@@ -31,11 +31,11 @@ public class LagProtect implements ModInitializer {
         //? if >=1.21.11 {
         // Default namespace until MC-303846 lets /gamerule accept namespaced ids
         LAG_PROTECT = GameRuleBuilder.forInteger(30)
-                .range(1, 200)
+                .range(0, 200)
                 .buildAndRegister(Identifier.withDefaultNamespace("lag_protect"));
         //?} else {
-        /*LAG_PROTECT = GameRuleRegistry.register("lagProtect", GameRules.Category.MISC,
-                GameRuleFactory.createIntRule(30, 1, 200));
+        /*LAG_PROTECT = GameRuleRegistry.register("lag_protect", GameRules.Category.MISC,
+                GameRuleFactory.createIntRule(30, 0, 200));
         *///?}
 
         ServerLivingEntityEvents.ALLOW_DAMAGE.register((entity, source, amount) -> {

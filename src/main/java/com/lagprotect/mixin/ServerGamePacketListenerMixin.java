@@ -95,6 +95,10 @@ public abstract class ServerGamePacketListenerMixin extends ServerCommonPacketLi
         //?} else {
         /*int interval = server.getGameRules().getInt(LagProtect.LAG_PROTECT);
         *///?}
+        if (interval <= 0) {
+            lagprotect$pending = false;
+            return;
+        }
         if (tickCount % interval != 0) {
             return;
         }
