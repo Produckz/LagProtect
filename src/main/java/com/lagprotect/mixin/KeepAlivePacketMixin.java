@@ -8,7 +8,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@SuppressWarnings("all")
 @Mixin(ServerboundKeepAlivePacket.class)
 public abstract class KeepAlivePacketMixin {
 
@@ -17,10 +16,15 @@ public abstract class KeepAlivePacketMixin {
             at = @At("HEAD"),
             cancellable = true
     )
-    public void customKeepAlive(ServerCommonPacketListener serverCommonPacketListener, CallbackInfo ci) {
-        ((CustomKeepAliveAccess)serverCommonPacketListener).handleCustomKeepAlive((ServerboundKeepAlivePacket) (Object)this);
-        if (((ServerboundKeepAlivePacket) (Object)this).getId() <= 11000L) {
-            ci.cancel();
+    private void lagprotect$interceptCustomKeepAlive(ServerCommonPacketListener listener, CallbackInfo ci) {
+        ServerboundKeepAlivePacket packet = (ServerboundKeepAlivePacket) (Object) this;
+        // Custom challenge ids are negative; vanilla ids are Util.getMillis() and always positive
+        if (packet.getId() >= 0L) {
+            return;
         }
+        if (listener instanceof CustomKeepAliveAccess access) {
+            access.lagprotect$handleCustomKeepAlive(packet);
+        }
+        ci.cancel();
     }
 }

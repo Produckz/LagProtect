@@ -1,0 +1,32 @@
+mod.id = "lag_protect"
+mod.version = "2.1.0"
+
+deps.fabric_loader = "0.19.3"
+loomx.loom_version = "1.17-SNAPSHOT"
+
+["1.21.5"]
+# Ceiling: 1.21.11 gamerule rework
+mod.mc_slug = "1.20.5-1.21.10"
+mod.mc_compat = ">=1.20.5 <1.21.11"
+mod.mc_releases = [
+    "1.20.5", "1.20.6",
+    "1.21", "1.21.1", "1.21.2", "1.21.3", "1.21.4",
+    "1.21.5", "1.21.6", "1.21.7", "1.21.8", "1.21.9", "1.21.10"
+]
+
+deps.fabric_api = "0.120.0+1.21.5"
+
+["1.21.11"]
+# Exact: gamerule rework in 1.21.11, obfuscation removed in 26.1
+mod.mc_slug = "1.21.11"
+mod.mc_compat = "1.21.11"
+mod.mc_releases = ["1.21.11"]
+
+deps.fabric_api = "0.141.6+1.21.11"
+
+["26.2"]
+mod.mc_slug = "26.1"
+mod.mc_compat = ">=26.1"
+mod.mc_releases = ["26.1", "26.1.1", "26.1.2", "26.2"]
+
+deps.fabric_api = "0.158.0+26.2"
