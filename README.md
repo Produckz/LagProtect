@@ -1,9 +1,17 @@
-# Disable End
+# Lag Protect
 
-Simple mod that adds a gamerule that allows you to dynamically disable collisions with end portal blocks
+This mod protects players from damage during lag spikes
 
 Requires Fabric API
+# Usage
 
-## License
+/gamerule lagProtect <Sensitivity in ticks>
 
-This template is available under the CC0 license. Feel free to learn from it and incorporate it in your own projects.
+default: 10 (10*50 = 500ms)
+
+lower = more sensitive, higher = less sensitive
+
+set to 0 to disable
+# License
+
+This mod is available under the MIT license.
